@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -46,10 +47,12 @@ public class WordAdapter extends ArrayAdapter<Word>
     /**
      * Provides a view for an AdapterView (ListView, GridView, etc.)
      *
+     * getView method is called when a ListView is trying to display a list of items at a given position.
+     *
      * @param position The position in the list of data that should be displayed in the
      *                 list item view.
-     * @param convertView The recycled view to populate.
-     * @param parent The parent ViewGroup that is used for inflation.
+     * @param convertView The recycled view to populate. ListView will pass in a potential view that we could reuse, which is convertView.
+     * @param parent The parent ViewGroup that is used for inflation. Parent ViewGroup (for all list items) which is the ListView itself
      * @return The View for the position in the AdapterView.
 
      * Use Ctrl+O to override methods of the inherited class.
@@ -66,20 +69,26 @@ public class WordAdapter extends ArrayAdapter<Word>
         }
 
 
-        // Get the {@link Word} object located at this position in the list
+        // Get the {@link Word} object located at this position in the list.
+        // This helps to get Word object at the given position of the list.
         Word currentWord = getItem(position);
 
-        // Find the TextView in the list_item.xml layout with the ID version_name
+        // Find the TextView in the list_item.xml layout with the ID miwok_text_view
         TextView miwokTextView = (TextView) listItemView.findViewById(R.id.miwok_text_view);
-        // Get the version name from the current AndroidFlavor object and
-        // set this text on the name TextView
+        // Get the Miwok translation from the currentWord object and
+        // set this text on the miwokTextView.
         miwokTextView.setText(currentWord.getMiwokTranslation());
 
-        // Find the TextView in the list_item.xml layout with the ID version_number
+        // Find the TextView in the list_item.xml layout with the ID default_text_view
         TextView defaultTextView = (TextView) listItemView.findViewById(R.id.default_text_view);
-        // Get the version number from the current AndroidFlavor object and
-        // set this text on the number TextView
+        // Get the default translation from the currentWord object and
+        // set this text on the defaultTextView.
         defaultTextView.setText(currentWord.getDefaultTranslation());
+
+        // Find the ImageView in the list_item.xml layout with the ID image_view
+        ImageView imageView = (ImageView) listItemView.findViewById(R.id.image);
+        // Set the ImageView to the image resource specified in the current Word.
+        imageView.setImageResource(currentWord.getImageResourceId());
 
         // Return the whole list item layout (containing 2 TextViews )
         // so that it can be shown in the ListView
