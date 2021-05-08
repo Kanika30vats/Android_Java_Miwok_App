@@ -94,5 +94,21 @@ public class WordAdapter extends ArrayAdapter<Word>
         // so that it can be shown in the ListView
         return listItemView;
 
+        /**
+         * The above line 'return listItemView' is problematic for PhraseActivity.
+         * In PhraseActivity, the screen is blank.
+         * The WordAdapter assumes each word has an image, but phrases don't have images.
+         *
+         * 1. Either we can create PhraseAdapter to use it in PhraseActivity and use WordAdapter only in NumbersActivity, ColorsActivity, FamilyActivity.
+         *    But this involves a lot of duplicate code.
+         * 2. So it's better to slightly modify WordAdapter class and use it in PhraseActivity, NumbersActivity, ColorsActivity, FamilyActivity.
+         *    We can hide or show a view in android while the app is running using control flow statements.
+         *
+         * SOLUTION (To fix PhrasesActivity):
+         *  Modify WordAdapter so we use an if/else statement.
+         *  If there is an image associated with the Word object, show the ImageView; otherwise hide the ImageView.
+         *  In order to determine whether we should hide or show an ImageView in the list item, we can check whether or not a constructor has set an Imageview (in Word.java)
+         */
+
     }
 }
