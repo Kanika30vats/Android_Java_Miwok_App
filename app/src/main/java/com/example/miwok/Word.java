@@ -19,7 +19,9 @@ public class Word
     /**
      * Image resource ID for the word
      */
-    private int mImageResourceId;
+    private int mImageResourceId = NO_IMAGE_PROVIDED;
+
+    private static final int NO_IMAGE_PROVIDED = -1;
 
     /**
      * Constructor
@@ -73,5 +75,15 @@ public class Word
     public int getImageResourceId()
     {
         return mImageResourceId;
+    }
+
+    /**
+     * Returns whether or not there is an image for this word.
+     *
+     */
+    public boolean hasImage()
+    {
+        // returns true if mImageResource is not equal to No_IMAGE_PROVIDED.
+        return mImageResourceId != NO_IMAGE_PROVIDED;
     }
 }
