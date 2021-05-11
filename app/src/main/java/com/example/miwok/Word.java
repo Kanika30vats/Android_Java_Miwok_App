@@ -23,6 +23,9 @@ public class Word
 
     private static final int NO_IMAGE_PROVIDED = -1;
 
+    /** Audio resource ID for the word */
+    private int mAudioResourceId;
+
     /**
      * Constructor
      *
@@ -30,11 +33,13 @@ public class Word
      *
      * @param defaultTranslation is the word in a lang that the user is familiar with (such as English)
      * @param miwokTranslation is the word in Miwok Language
+     * @param audioResourceId is the resource ID for the audio file associated with this word.
      */
-    public Word(String defaultTranslation, String miwokTranslation)
+    public Word(String defaultTranslation, String miwokTranslation, int audioResourceId)
     {
         mDefaultTranslation = defaultTranslation;
         mMiwokTranslation = miwokTranslation;
+        mAudioResourceId = audioResourceId;
     }
 
     /**
@@ -45,12 +50,14 @@ public class Word
      * @param defaultTranslation is the word in a lang that the user is familiar with (such as English)
      * @param miwokTranslation is the word in Miwok Language
      * @param imageResourceId is the drawable resource ID for the image associated
+     * @param audioResourceId is the resource ID for the audio file associated with this word.
      */
-    public Word(String defaultTranslation, String miwokTranslation, int imageResourceId)
+    public Word(String defaultTranslation, String miwokTranslation, int imageResourceId, int audioResourceId)
     {
         mDefaultTranslation = defaultTranslation;
         mMiwokTranslation = miwokTranslation;
         mImageResourceId = imageResourceId;
+        mAudioResourceId = audioResourceId;
     }
 
     /**
@@ -85,5 +92,14 @@ public class Word
     {
         // returns true if mImageResource is not equal to No_IMAGE_PROVIDED.
         return mImageResourceId != NO_IMAGE_PROVIDED;
+    }
+
+    /**
+     *
+     * Returns the audio resource ID of the word.
+     */
+    public int getAudioResourceId()
+    {
+        return mAudioResourceId;
     }
 }
