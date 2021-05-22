@@ -151,6 +151,23 @@ public class NumbersActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onStop() {
+        /**
+         * Whenever we override the activity lifecycle method, we should always call super class version of that method.
+         * Because the activity knows how to handle stopping the other activity & doing other behind the scenes cleanup work that we as developer don't need to worry about.
+         * If this line is commented, then app will crash unexpectedly.
+         */
+        super.onStop();
+        // When the activity is stopped, release the media player resources because we won't
+        // be playing any more sounds.
+        /**
+         * Instead of calling release() method on MediaPlayer object,
+         * releaseMediaPlayer() method is called because with release() we can set MediaPlayer object back to null if it is currently not configured to play some file.
+         */
+        releaseMediaPlayer();
+    }
+
     /**
      * Clean up the media player by releasing its resources.
      */
