@@ -102,4 +102,23 @@ public class Word
     {
         return mAudioResourceId;
     }
+
+    /**
+     * Shortcut used to generate toString() method is Alt+Insert
+     * Returns the representation of the Word object.
+     * The method concatenates a bunch of variables and text, in order to print out all the variables in Word class as a String.
+     * The return value of method is a single string.
+     *
+     * Then whenever we have a Word object, such as within the onItemClick() method of the OnItemClickListener,
+     * we can print out the Word object to the logs.
+     */
+    @Override
+    public String toString() {
+        return "Word{" +
+                "mDefaultTranslation='" + mDefaultTranslation + '\'' +
+                ", mMiwokTranslation='" + mMiwokTranslation + '\'' +
+                ", mImageResourceId=" + mImageResourceId +
+                ", mAudioResourceId=" + mAudioResourceId +
+                '}';
+    }
 }
